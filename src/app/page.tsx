@@ -1,95 +1,106 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
 
-export default function Home() {
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Box, Button, Container, Typography, Fade, Grow, Stack } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import CloudIcon from '@mui/icons-material/Cloud';
+import ShowChartIcon from '@mui/icons-material/ShowChart';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import styles from './page.module.css';
+
+const Home = () => {
+  const router = useRouter();
+  const [showContent, setShowContent] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowContent(true), 300);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleGoToDashboard = () => {
+    router.push('/dashboard');
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    <Box className={styles.landing}>
+      <Box className={styles.background} />
+      <Box className={styles.overlay} />
+      <Container maxWidth={'lg'} className={styles.content} sx={{ paddingTop: 0 }}>
+        <Grow in={showContent} timeout={800}>
+          <Box>
+            <Box className={styles.illustration} />
+            <Typography variant={'h2'} className={styles.title} gutterBottom>
+              Welcome to WeatherApp
+            </Typography>
+            <Box display={'flex'} justifyContent={'center'}>
+              <Typography variant='h6' className={styles.subtitle} gutterBottom>
+                Track weather in your favorite cities, save locations, and access real-time meteorological data with ease.
+              </Typography>
+            </Box>
+            <Stack direction={'row'} justifyContent={'center'} spacing={2} mt={4}>
+              <Fade in={showContent} timeout={1200}>
+                <Button style={{ color: 'white', padding: 12, fontWeight: 'bold' }}
+                        className={styles.button} onClick={handleGoToDashboard}>
+                  Go to Dashboard
+                </Button>
+              </Fade>
+            </Stack>
+          </Box>
+        </Grow>
+        <Fade in={showContent} timeout={1600}>
+          <Box className={styles.features}>
+            <Typography variant={'h5'} className={styles.featureTitle} marginBottom={'2rem'}>
+              Why choose WeatherApp?
+            </Typography>
+            <Box className={styles.featureGrid} marginBottom={2.4}>
+              <Box className={styles.featureItem}>
+                <SearchIcon fontSize={'large'} />
+                <Typography variant={'subtitle1'}>Smart City Search</Typography>
+                <Typography variant={'body2'}>Quickly find any city with dynamic suggestions as you type.</Typography>
+              </Box>
+              <Box className={styles.featureItem}>
+                <CloudIcon fontSize={'large'} />
+                <Typography variant={'subtitle1'}>Live Weather Details</Typography>
+                <Typography variant={'body2'}>See temperature, wind, humidity, and more in real time.</Typography>
+              </Box>
+              <Box className={styles.featureItem}>
+                <ShowChartIcon fontSize={'large'} />
+                <Typography variant={'subtitle1'}>Historical Insights</Typography>
+                <Typography variant={'body2'}>Explore past weather trends with interactive graphs.</Typography>
+              </Box>
+              <Box className={styles.featureItem}>
+                <FavoriteIcon fontSize={'large'} />
+                <Typography variant={'subtitle1'}>Your Favorite Cities</Typography>
+                <Typography variant={'body2'}>Save and manage frequently checked locations easily.</Typography>
+              </Box>
+            </Box>
+          </Box>
+        </Fade>
+      </Container>
+      {showScrollTop && (
+        <Fade in={showScrollTop}>
+          <Box onClick={scrollToTop} className={styles.scrollTopButton}>
+            <KeyboardArrowUpIcon fontSize="medium" />
+          </Box>
+        </Fade>
+      )}
+    </Box>
   );
-}
+};
+
+export default Home;
