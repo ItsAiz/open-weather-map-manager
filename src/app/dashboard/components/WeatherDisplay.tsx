@@ -6,15 +6,26 @@ import { Box, CircularProgress, Typography } from '@mui/material';
 import WeatherApi from '@/services/WeatherApi';
 import { CurrentWeather } from '@/types/weather';
 
-const WeatherDisplay = ({ city }: { city: string }) => {
+interface WeatherDisplayProps {
+  city: string;
+  onWeatherData?: (data: CurrentWeather) => void;
+}
+
+const WeatherDisplay = ({ city, onWeatherData }: WeatherDisplayProps) => {
   const [currentWeather, setCurrentWeather] = useState<CurrentWeather | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
     WeatherApi.getCurrentWeather(city)
-      .then((weather) => setCurrentWeather(weather))
+      .then((weather) => {
+        setCurrentWeather(weather);
+        if (onWeatherData) {
+          onWeatherData(weather);
+        }
+      })
       .finally(() => setLoading(false));
+  // eslint-disable-next-line
   }, [city]);
 
   if (loading) {

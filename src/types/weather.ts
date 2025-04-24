@@ -74,3 +74,13 @@ export type CurrentWeather = {
   description: string;
   icon: string;
 };
+
+export type WeatherCondition = 
+  | 'thunderstorm' | 'thunderstorm with light rain' | 'thunderstorm with rain' 
+  | 'thunderstorm with heavy rain' | 'light thunderstorm' | 'heavy thunderstorm'
+  | 'drizzle' | 'light intensity drizzle' | 'drizzle rain' | 'heavy intensity drizzle'
+  | 'rain' | 'light rain' | 'moderate rain' | 'heavy intensity rain'
+  | 'snow' | 'light snow' | 'heavy snow' | 'sleet'
+  | 'mist' | 'fog' | 'haze' | 'sand' | 'dust'
+  | 'clear' | 'clear sky'
+  | 'clouds' | 'few clouds' | 'scattered clouds' | 'broken clouds' | 'overcast clouds';
