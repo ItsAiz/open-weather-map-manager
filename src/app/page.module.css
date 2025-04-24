@@ -167,16 +167,6 @@ a.secondary {
   }
 }
 
-.landing {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
 .transitionEffect {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -195,50 +185,6 @@ a.secondary {
 .button:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
-}
-
-.scrollTopButton {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  z-index: 1300;
-  color: white;
-  border-radius: 50%;
-  padding: 0.6rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.scrollTopButton:hover {
-  transform: translateY(-2px);
-}
-
-.landing {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.background {
-  position: absolute;
-  inset: 0;
-  background-image: url('/assets/main-background.jpg');
-  background-size: cover;
-  background-position: center;
-  filter: blur(8px) brightness(0.6);
-  z-index: -2;
-}
-
-.overlay {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: -1;
 }
 
 .content {

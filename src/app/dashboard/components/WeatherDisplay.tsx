@@ -29,7 +29,7 @@ const WeatherDisplay = ({ city }: { city: string }) => {
     return (
       <Box display={'flex'} justifyContent={'center'} alignItems={'center'} minHeight={'200px'}>
         <Typography variant={'h6'} color={'error'}>
-          No se pudo obtener la información del clima.
+          Unable to retrieve weather information.
         </Typography>
       </Box>
     );
@@ -41,22 +41,22 @@ const WeatherDisplay = ({ city }: { city: string }) => {
         <Image src={currentWeather.icon} alt={'Ícono del clima'} width={100} height={100} />
       </Box>
       <Typography variant={'h5'} gutterBottom>
-        Clima actual en {city}
+        Current weather in {city}
       </Typography>
       <Typography variant={'body1'}>
-        <strong>Temperatura:</strong> {currentWeather.temp}°C
+        <strong>Temperature:</strong> {currentWeather.temp}°C
       </Typography>
       <Typography variant={'body1'}>
-        <strong>Sensación térmica:</strong> {currentWeather.feels_like}°C
+        <strong>Feels like:</strong> {currentWeather.feels_like}°C
       </Typography>
       <Typography variant={'body1'}>
-        <strong>Humedad:</strong> {currentWeather.humidity}%
+        <strong>Humidity:</strong> {currentWeather.humidity}%
       </Typography>
       <Typography variant={'body1'}>
-        <strong>Velocidad del viento:</strong> {currentWeather.wind_speed} m/s
+        <strong>Wind speed:</strong> {currentWeather.wind_speed} m/s
       </Typography>
       <Typography variant={'body1'}>
-        <strong>Descripción:</strong> {currentWeather.description}
+        <strong>Description:</strong> {currentWeather.description}
       </Typography>
     </Box>
   );

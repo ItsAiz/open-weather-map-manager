@@ -5,7 +5,6 @@ import { Container, Typography, Box, Paper } from '@mui/material';
 import CitySearch from './components/CitySearch';
 import WeatherDisplay from './components/WeatherDisplay';
 import HistoricalWeatherChart from './components/HistoricalWeatherChart';
-import styles from './page.module.css';
 
 const WeatherApp = () => {
   const [selectedCity, setSelectedCity] = useState<string>('');
@@ -15,17 +14,17 @@ const WeatherApp = () => {
   };
 
   return (
-    <Box className={styles['box-container']}>
+    <Box className={'main-container'}>
       <Container maxWidth={'md'} sx={{ py: 4 }}>
-        <Typography color={'black'} variant={'h4'} align={'center'} gutterBottom>
-          Consulta del Clima
+        <Typography color={'white'} variant={'h4'} align={'center'} gutterBottom>
+          Weather Forecast
         </Typography>
         <Paper elevation={3} sx={{ p: 3, mb: 4 }}>
           <CitySearch onSelectCity={handleSelectCity} />
         </Paper>
         {!selectedCity ? (
-          <Typography align={'center'} color={'textSecondary'}>
-            Por favor, selecciona una ciudad para ver la información del clima.
+          <Typography align={'center'} color={'white'}>
+            Please select a city to view the weather information.
           </Typography>
         ) : (
           <Box display={'flex'} flexDirection={'column'} gap={4}>

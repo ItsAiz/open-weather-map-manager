@@ -7,21 +7,11 @@ import SearchIcon from '@mui/icons-material/Search';
 import CloudIcon from '@mui/icons-material/Cloud';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import styles from './page.module.css';
 
 const Home = () => {
   const router = useRouter();
   const [showContent, setShowContent] = useState(false);
-  const [showScrollTop, setShowScrollTop] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 300)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   useEffect(() => {
     const timer = setTimeout(() => setShowContent(true), 300);
@@ -32,14 +22,10 @@ const Home = () => {
     router.push('/dashboard');
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
-
   return (
-    <Box className={styles.landing}>
-      <Box className={styles.background} />
-      <Box className={styles.overlay} />
+    <Box className={'main-container'}>
+      <Box className={'main-container-background'} />
+      <Box className={'overlay'} />
       <Container maxWidth={'lg'} className={styles.content} sx={{ paddingTop: 0 }}>
         <Grow in={showContent} timeout={800}>
           <Box>
@@ -92,13 +78,6 @@ const Home = () => {
           </Box>
         </Fade>
       </Container>
-      {showScrollTop && (
-        <Fade in={showScrollTop}>
-          <Box onClick={scrollToTop} className={styles.scrollTopButton}>
-            <KeyboardArrowUpIcon fontSize={'medium'} />
-          </Box>
-        </Fade>
-      )}
     </Box>
   );
 };

@@ -53,7 +53,7 @@ const CitySearch = ({ onSelectCity }: { onSelectCity: (city: string) => void }) 
       renderInput={(params) => (
         <TextField
           {...params}
-          label={'Buscar ciudad...'}
+          label={'Search city...'}
           variant={'outlined'}
           fullWidth
           InputProps={{
