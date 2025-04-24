@@ -95,7 +95,7 @@ const Home = () => {
       {showScrollTop && (
         <Fade in={showScrollTop}>
           <Box onClick={scrollToTop} className={styles.scrollTopButton}>
-            <KeyboardArrowUpIcon fontSize="medium" />
+            <KeyboardArrowUpIcon fontSize={'medium'} />
           </Box>
         </Fade>
       )}
