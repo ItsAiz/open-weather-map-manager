@@ -85,7 +85,7 @@ const WeatherApp = () => {
                 </Typography>
               </Grid>
               <Grid size={{ xs: 12, md: 8  }}>
-                <HistoricalWeatherChart city={selectedCity} />
+                <HistoricalWeatherChart city={selectedCity} styles={getWeatherPaperStyle(theme, weatherCondition)} />
               </Grid>
             </Grid>
           </Paper>

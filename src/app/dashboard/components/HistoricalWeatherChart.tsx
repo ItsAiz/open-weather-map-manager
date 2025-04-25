@@ -8,7 +8,6 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from 'recharts';
 import { Box, Typography, ToggleButtonGroup, ToggleButton, Paper, CircularProgress } from '@mui/material';
@@ -16,7 +15,7 @@ import { useTheme } from '@mui/material/styles';
 import WeatherApi from '@/services/WeatherApi';
 import { ProcessedForecast } from '@/types/weather';
 
-const HistoricalWeatherChart = ({ city }: { city: string }) => {
+const HistoricalWeatherChart = ({ city, styles }: { city: string, styles: object }) => {
   const theme = useTheme();
   const [forecastData, setForecastData] = useState<ProcessedForecast[]>([]);
   const [chartType, setChartType] = useState<'temp' | 'humidity' | 'wind'>('temp');
@@ -74,8 +73,8 @@ const HistoricalWeatherChart = ({ city }: { city: string }) => {
   }
 
   return (
-    <Paper elevation={3} sx={{ p: 3, borderRadius: 3 }}>
-      <Typography variant={'h6'} gutterBottom sx={{ fontWeight: 'bold' }}>
+    <Paper elevation={3} sx={{ ...styles, p: 3, borderRadius: 3 }}>
+      <Typography variant={'h6'} gutterBottom sx={{ fontWeight: 'bold', color: 'white' }}>
         Historical weather for the next 5 days
       </Typography>
       <ToggleButtonGroup
@@ -84,24 +83,40 @@ const HistoricalWeatherChart = ({ city }: { city: string }) => {
         exclusive
         onChange={(_, value) => value && setChartType(value)}
         sx={{mb: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-        <ToggleButton sx={{ flex: '1 1 auto', minWidth: '100px' }} value={'temp'}>Temperature</ToggleButton>
-        <ToggleButton sx={{ flex: '1 1 auto', minWidth: '100px' }} value={'humidity'}>Humidity</ToggleButton>
-        <ToggleButton sx={{ flex: '1 1 auto', minWidth: '100px' }} value={'wind'}>Wind</ToggleButton>
+        {[
+          { label: 'Temperature', value: 'temp' },
+          { label: 'Humidity', value: 'humidity' },
+          { label: 'Wind', value: 'wind' },
+        ].map(({ label, value }) => (
+          <ToggleButton
+            key={value}
+            value={value}
+            sx={{
+              flex: '1 1 auto',
+              minWidth: '100px',
+              color: 'white',
+              '&.Mui-selected': {
+                backgroundColor: 'rgba(255, 255, 255, 0.6)',
+                color: '#333',
+                fontWeight: 'bold',
+                '&:hover': {
+                  backgroundColor: '#e0e0e0',
+                },
+              },
+            }}>
+            {label}
+          </ToggleButton>
+        ))}
       </ToggleButtonGroup>
       <ResponsiveContainer width={'100%'} height={300}>
         <LineChart data={getDataForChart()} margin={{ top: 20, right: 20, left: 2, bottom: 0 }}>
           <CartesianGrid strokeDasharray={'3 3'} stroke={theme.palette.divider} />
-          <XAxis dataKey={'date'} stroke={theme.palette.text.primary} />
-          <YAxis stroke={theme.palette.text.primary}
-                 label={{ value: getChartLabel(), angle: -90, position: 'insideLeft' }} />
+          <XAxis dataKey={'date'} stroke={'white'} />
+          <YAxis stroke={'white'}
+                 label={{ value: getChartLabel(), angle: -90, position: 'insideLeft', fill: 'white' }} />
           <Tooltip
             contentStyle={{ backgroundColor: theme.palette.background.paper, borderRadius: 8 }}
             labelStyle={{ color: theme.palette.text.primary }} />
-          <Legend
-            layout={'horizontal'}
-            verticalAlign={'top'}
-            align={'right'}
-            wrapperStyle={{ top: 0, right: 20 }} />
           <Line
             type={'monotone'}
             dataKey={'value'}
