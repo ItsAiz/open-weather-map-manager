@@ -20,7 +20,7 @@ export const getWeatherPaperStyle = (theme: Theme, condition: WeatherCondition) 
       backgroundImage: `url(${weatherBackgrounds[condition]})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
-      filter: 'blur(8px) brightness(0.7)',
+      filter: 'blur(7px) brightness(0.7)',
       zIndex: -1,
     },
     '& > *': {
