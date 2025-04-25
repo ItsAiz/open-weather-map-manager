@@ -83,10 +83,10 @@ const HistoricalWeatherChart = ({ city }: { city: string }) => {
         value={chartType}
         exclusive
         onChange={(_, value) => value && setChartType(value)}
-        sx={{ mb: 2 }}>
-        <ToggleButton value={'temp'}>Temperature</ToggleButton>
-        <ToggleButton value={'humidity'}>Humidity</ToggleButton>
-        <ToggleButton value={'wind'}>Wind</ToggleButton>
+        sx={{mb: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+        <ToggleButton sx={{ flex: '1 1 auto', minWidth: '100px' }} value={'temp'}>Temperature</ToggleButton>
+        <ToggleButton sx={{ flex: '1 1 auto', minWidth: '100px' }} value={'humidity'}>Humidity</ToggleButton>
+        <ToggleButton sx={{ flex: '1 1 auto', minWidth: '100px' }} value={'wind'}>Wind</ToggleButton>
       </ToggleButtonGroup>
       <ResponsiveContainer width={'100%'} height={300}>
         <LineChart data={getDataForChart()} margin={{ top: 20, right: 20, left: 2, bottom: 0 }}>

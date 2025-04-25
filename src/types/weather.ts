@@ -2,6 +2,7 @@ type WeatherMain = {
   temp: number;
   feels_like: number;
   humidity: number;
+  pressure: number;
 };
   
 type WeatherDescription = {
@@ -17,6 +18,7 @@ export type WeatherResponse = {
   main: WeatherMain;
   weather: WeatherDescription[];
   wind: WeatherWind;
+  visibility: number;
 };
   
 type ForecastMain = {
@@ -71,6 +73,8 @@ export type CurrentWeather = {
   feels_like: number;
   humidity: number;
   wind_speed: number;
+  pressure: number;
+  visibility: number;
   description: string;
   icon: string;
 };

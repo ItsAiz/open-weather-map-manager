@@ -8,7 +8,6 @@ export const getWeatherPaperStyle = (theme: Theme, condition: WeatherCondition) 
   return {
     p: 3,
     mb: 4,
-    borderRadius: '16px',
     position: 'relative',
     overflow: 'hidden',
     '&::before': {

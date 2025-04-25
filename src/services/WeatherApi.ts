@@ -21,6 +21,8 @@ export default class WeatherApi {
           feels_like: data.main.feels_like,
           humidity: data.main.humidity,
           wind_speed: data.wind.speed,
+          pressure: data.main.pressure,
+          visibility: data.visibility ?? 0,
           description: data.weather[0]?.description || 'Sin descripción',
           icon: `https://openweathermap.org/img/wn/${data.weather[0]?.icon}@2x.png`,
         };
