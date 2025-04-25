@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Container, Typography, Box, Paper, Grid, Divider, Chip, Fade } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import AddchartIcon from '@mui/icons-material/Addchart';
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import CitySearch from './components/CitySearch';
 import WeatherDisplay from './components/WeatherDisplay';
 import HistoricalWeatherChart from './components/HistoricalWeatherChart';
@@ -121,7 +122,7 @@ const WeatherApp = () => {
             Other Cities
           </Typography>
           <Grid container spacing={2}>
-            {['New York', 'London', 'Tokyo', 'Paris', 'Sydney'].map((city) => (
+            {['New York', 'London', 'Tokyo', 'Paris', 'Sydney'].map((city, index) => (
               <Grid size={{ xs: 6, sm: 4, md: 2 }} key={city}>
                 <Paper elevation={1} sx={{
                   p: 1.5,
@@ -131,7 +132,7 @@ const WeatherApp = () => {
                   background: 'rgba(255, 255, 255, 0.6)',
                   '&:hover': { backgroundColor: '#f0f4f8' }
                 }} onClick={() => setSelectedCity(city)}>
-                  <AddchartIcon />
+                  {index % 2 === 0 ? <AddchartIcon /> : <QueryStatsIcon />}
                   <Typography variant='subtitle2'>{city}</Typography>
                 </Paper>
               </Grid>
