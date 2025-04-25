@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import { Autocomplete, TextField, CircularProgress } from '@mui/material';
 import WeatherApi from '@/services/WeatherApi';
 import { CitySuggestion } from '@/types/weather';
+import { useNotification } from '@/context/NotificationContext';
 
 const CitySearch = ({ onSelectCity }: { onSelectCity: (city: string) => void }) => {
+  const { showNotification } = useNotification();
   const [inputValue, setInputValue] = useState('');
   const [options, setOptions] = useState<CitySuggestion[]>([]);
   const [loading, setLoading] = useState(false);
@@ -22,9 +24,13 @@ const CitySearch = ({ onSelectCity }: { onSelectCity: (city: string) => void }) 
       setLoading(true);
       WeatherApi.searchCity(inputValue)
         .then(setOptions)
-        .catch(() => setOptions([]))
+        .catch(() => {
+          setOptions([]);
+          showNotification('Error searching city', 'error');
+        })
         .finally(() => setLoading(false));
     }
+    // eslint-disable-next-line
   }, [inputValue]);
 
   return (

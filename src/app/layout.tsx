@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import ScrollToTopButton from '@/components/scroll-top/ScrollToTopButton';
+import { NotificationProvider } from '@/context/NotificationContext';
 import './globals.css';
 
 const geistSans = Geist({
@@ -27,8 +28,10 @@ export default function RootLayout({
   return (
     <html lang={'en'}>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
-        <ScrollToTopButton />
+        <NotificationProvider>
+          {children}
+          <ScrollToTopButton />
+        </NotificationProvider>
       </body>
     </html>
   );

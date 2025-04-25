@@ -67,7 +67,7 @@ const Home = () => {
               <Box className={styles.featureItem}>
                 <ShowChartIcon fontSize={'large'} />
                 <Typography variant={'subtitle1'}>Historical Insights</Typography>
-                <Typography variant={'body2'}>Explore past weather trends with interactive graphs.</Typography>
+                <Typography variant={'body2'}>Explore forecast weather trends with interactive graphs.</Typography>
               </Box>
               <Box className={styles.featureItem}>
                 <FavoriteIcon fontSize={'large'} />

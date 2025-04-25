@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { Box, CircularProgress, Typography } from '@mui/material';
 import WeatherApi from '@/services/WeatherApi';
 import { CurrentWeather } from '@/types/weather';
+import { useNotification } from '@/context/NotificationContext';
 
 interface WeatherDisplayProps {
   city: string;
@@ -12,6 +13,7 @@ interface WeatherDisplayProps {
 }
 
 const WeatherDisplay = ({ city, onWeatherData }: WeatherDisplayProps) => {
+  const { showNotification } = useNotification();
   const [currentWeather, setCurrentWeather] = useState<CurrentWeather | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -24,6 +26,7 @@ const WeatherDisplay = ({ city, onWeatherData }: WeatherDisplayProps) => {
           onWeatherData(weather);
         }
       })
+      .catch(() => showNotification('Error fetching weather conditions', 'error'))
       .finally(() => setLoading(false));
   // eslint-disable-next-line
   }, [city]);

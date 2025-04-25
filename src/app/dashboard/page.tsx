@@ -151,7 +151,7 @@ const WeatherApp = () => {
             Other Cities
           </Typography>
           <Grid container spacing={2}>
-            {cities.map((city, index) => (
+            {cities.map((city) => (
               <Grid size={{ xs: 6, sm: 4, md: 2 }} key={city}>
                 <Paper
                   elevation={1}
@@ -167,10 +167,13 @@ const WeatherApp = () => {
                   onClick={() => setSelectedCity(city)}
                   onMouseEnter={() => setHoveredCity(city)}
                   onMouseLeave={() => setHoveredCity(null)}>
-                  {index % 2 === 0 ? <AddchartIcon /> : <QueryStatsIcon />}
+                  <QueryStatsIcon />
                   <Typography variant={'subtitle2'}>{city}</Typography>
                   {hoveredCity === city && (
-                    <IconButton onClick={() => removeCity(city)} sx={{ position: 'absolute', top: 4, right: 4 }}>
+                    <IconButton onClick={(e) => {
+                                  e.stopPropagation();
+                                  removeCity(city);
+                                }} sx={{ position: 'absolute', top: 4, right: 4 }}>
                       <DeleteIcon fontSize={'small'} />
                     </IconButton>
                   )}

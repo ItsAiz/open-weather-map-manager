@@ -14,9 +14,11 @@ import { Box, Typography, ToggleButtonGroup, ToggleButton, Paper, CircularProgre
 import { useTheme } from '@mui/material/styles';
 import WeatherApi from '@/services/WeatherApi';
 import { ProcessedForecast } from '@/types/weather';
+import { useNotification } from '@/context/NotificationContext';
 
 const HistoricalWeatherChart = ({ city, styles }: { city: string, styles: object }) => {
   const theme = useTheme();
+  const { showNotification } = useNotification();
   const [forecastData, setForecastData] = useState<ProcessedForecast[]>([]);
   const [chartType, setChartType] = useState<'temp' | 'humidity' | 'wind'>('temp');
   const [loading, setLoading] = useState(true);
@@ -25,7 +27,9 @@ const HistoricalWeatherChart = ({ city, styles }: { city: string, styles: object
     setLoading(true);
     WeatherApi.getForecastByCity(city)
       .then((data) => setForecastData(data))
+      .catch(() => showNotification('Error fetching forecasts', 'error'))
       .finally(() => setLoading(false));
+    // eslint-disable-next-line
   }, [city]);
 
   const getDataForChart = () => {
