@@ -27,6 +27,8 @@ Save and manage frequently checked locations easily.
 - **Recharts** for visualizing weather trends
 - **Axios** for API requests
 - **UUID** for unique ID generation
+- **Jest** for unit testing
+- **React Testing Library** for component testing
 
 ---
 
@@ -88,4 +90,29 @@ Before running the project, you need to define the following environment variabl
 
 ⚠️ Important: All environment variables that need to be accessed in the browser must start with NEXT_PUBLIC_.
 
+## 🧪 Unit Testing
 
+This project uses Jest and React Testing Library to run unit tests and ensure that the application is working as expected.
+
+#### 📜 Running the Tests
+
+- To run the tests:
+
+      ```bash
+      npm run test
+
+This will execute all the unit tests defined in the project. The tests include checking the functionality of components, such as the city search functionality and error handling in case of failed API requests.
+
+#### 🧑‍💻 Example Tests
+
+Some of the tests included are:
+
+- City Search Input Field: Verifies that the city search input field renders correctly.
+
+- API Call on Input Change: Tests if the API is called when typing a city name into the input field.
+
+- City Selection: Ensures that selecting a city calls the appropriate handler.
+
+- Error Handling: Tests if the application handles errors from the API correctly and displays notifications.
+
+To explore the tests in detail, check the CitySearch component tests, which include mock API calls and user interactions.
