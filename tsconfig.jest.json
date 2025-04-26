@@ -1,0 +1,15 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+      "jsx": "react-jsx",
+      "module": "commonjs",
+      "esModuleInterop": true,
+      "target": "es6",
+      "noEmit": false,
+      "isolatedModules": true
+    },
+    "exclude": [
+      "node_modules"
+    ]
+  }
+  
