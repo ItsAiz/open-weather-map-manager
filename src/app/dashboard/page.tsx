@@ -62,18 +62,25 @@ const WeatherApp = () => {
         <Container maxWidth={false}
                    sx={{ ...getWeatherPaperStyle(theme, weatherCondition), margin: 0, minHeight: '100vh' }}>
           <Box textAlign={'center'} sx={{ mt: 4, mb: 3 }}>
-            <Typography
-              variant={'h2'}
-              className={styles.title}
-              sx={{
-                fontWeight: 700,
-                color: '#fff',
-                textShadow: '0 2px 8px rgba(0,0,0,0.5)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 1
-              }}>
+          <Typography
+            variant={'h2'}
+            className={styles.title}
+            sx={{
+              fontWeight: 700,
+              color: '#fff',
+              textShadow: '0 2px 8px rgba(0,0,0,0.5)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: { xs: 0.5, sm: 1 },
+              fontSize: {
+                xs: '1.8rem',
+                sm: '2.5rem',
+                md: '3.5rem',
+              },
+              flexWrap: 'wrap',
+              textAlign: 'center',
+            }}>
               <AddchartIcon fontSize={'inherit'} sx={{ color: '#ffcc00' }} />
               Weather Dashboard
             </Typography>
