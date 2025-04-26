@@ -1,0 +1,22 @@
+.backButtonContainer {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+  
+.backButton {
+    background-color: #ffffffaa;
+    color: #333;
+    text-transform: none;
+    font-weight: bold;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+  
+.backButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.25);
+}
+  

@@ -1,0 +1,16 @@
+.scrollTopButton {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1300;
+    color: white;
+    border-radius: 50%;
+    padding: 0.6rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .scrollTopButton:hover {
+    transform: translateY(-2px);
+  }
